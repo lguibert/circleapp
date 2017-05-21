@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 import datetime
 from django.db import models
 
-
 DAY_CHOICES = (
     ('MO', 'Monday'),
     ('TU', 'Tuesday'),
@@ -36,10 +35,8 @@ class Course(models.Model):
     type = models.ForeignKey(CourseType)
     room = models.ForeignKey(Room)
     day = models.CharField(max_length=150, choices=DAY_CHOICES)
-    hour = models.TimeField()
-    duration = models.DurationField(default=datetime.timedelta(hours=1))
+    start_time = models.TimeField()
+    end_time = models.TimeField()
 
     def __str__(self):
         return self.name
-
-
