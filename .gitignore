@@ -1,0 +1,5 @@
+main.css
+.sass-cache
+*.pyc
+.idea
+.DS_STORE

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container-fluid" id="home">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4>Go go go</h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row controllersContainer">
+                            <form>
+                                <div class="col-xs-12 col-lg-3">
+                                    <div class="form-group">
+                                        <label for="datetimeSelector">Date&nbsp;&amp;&nbsp;jour</label>
+                                        <input type='text' class="form-control" id='datetimeSelector'/>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-lg-3">
+                                    <div class="form-group">
+                                        <label for="types">Type de cours</label>
+                                        <select name="types" id="types" class="form-control">
+                                            <option></option>
+                                            {% for type in types %}
+                                                <option value="{{ type.id }}">{{ type.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-lg-3">
+                                    <div class="form-group">
+                                        <label for="places">Salles</label>
+                                        <select name="places" id="places" class="form-control">
+                                            <option></option>
+                                            {% for place in places %}
+                                                <option value="{{ place.id }}">{{ places.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-lg-3">
+                                    <div class="form-group">
+                                        <label style="visibility: hidden">Lancer recherche</label>
+                                        <button class="btn btn-success form-control" name="validSelection">Go&nbsp;!
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h4>Et tu peux aller...</h4>
+                    </div>
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extrajs %}
+    <script>
+        $(document).ready(function () {
+            $('#datetimeSelector').datetimepicker({
+                step: 15
+            });
+        });
+    </script>
+{% endblock %}
