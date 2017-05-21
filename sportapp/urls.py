@@ -22,5 +22,6 @@ import cercleforme.views as cercle_view
 
 urlpatterns = [
                   url(r'^admin/', admin.site.urls),
-                  url(r'^$', cercle_view.home, name="home")
+                  url(r'^$', cercle_view.home, name="home"),
+                  url(r'^search/course$', cercle_view.search_course, name="searchCourses"),
               ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

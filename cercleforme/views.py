@@ -1,6 +1,29 @@
 from django.shortcuts import render
+from django.views.decorators.http import require_POST
+from django.http.response import JsonResponse
+from django.core import serializers
 
 
-# Create your views here.
+from cercleforme.models import CourseType, Room, Course
+
+
 def home(request):
-    return render(request, "home.html")
+    return render(request, "home.html", {
+        "types": CourseType.objects.all(),
+        "rooms": Room.objects.all()
+    })
+
+
+@require_POST
+def search_course(request):
+    type_id = request.POST.get("type", None)
+    room_id = request.POST.get("room", None)
+    time = request.POST.get("time", None)
+
+    if type_id is None or room_id is None or time is None:
+        return JsonResponse(status=500)
+
+    type = CourseType.objects.get(id=type_id)
+    room = Room.objects.get(id=room_id)
+    courses = Course.objects.filter(start_time__gte=time, room=room, type=type).values()
+    return JsonResponse(serializers.serialize('json', courses), safe=False)
