@@ -5,6 +5,7 @@ from django.core import serializers
 
 from cercleforme.models import CourseType, Room, Course
 
+import datetime
 
 def home(request):
     return render(request, "home.html", {
@@ -29,11 +30,13 @@ def search_course(request):
         courses = courses.filter(room_id__in=Room.objects.filter(id__in=room_id).values_list("id", flat=True))
 
     if day_id:
-        # TODO: Mumu ?
+        courses = courses.filter(day__in=day_id)
         pass
 
     if time:
-        # TODO: Mumu ?
+        datetime_time = datetime.datetime.strptime(time, '%H:%M')
+        new_time = (datetime_time + datetime.timedelta(hours=1, minutes=30)).strftime("%H:%M")
+        courses = courses.filter(start_time__gte=time, start_time__lte=new_time)
         pass
 
     return JsonResponse(
