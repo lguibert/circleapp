@@ -79,7 +79,7 @@
         $(document).ready(function () {
             var days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
             var $daySelector = $("#daySelector");
-            var FORMAT_DATE = "DD/MM/YYYY HH:mm";
+            var FORMAT_DATE = "HH:mm";
             var $target = $("#target");
 
             for (var i = 0; i < days.length; i++) {
@@ -99,8 +99,8 @@
                     "<div class='panel-heading'>" + course.name + "</div>" +
                     "<div class='panel-body'>" +
                     "<ul>" +
-                    "<li>Debut: " + moment.parseZone(course.start_date).format(FORMAT_DATE) + "</li>" +
-                    "<li>Fin: " + moment.parseZone(course.end_date).format(FORMAT_DATE) + "</li>" +
+                    "<li>Debut: " + moment(course.start_time, "HH:mm").format("HH:mm") +
+                    "<li>Fin: " + moment(course.end_time, "HH:mm").format("HH:mm") + "</li>" +
                     "</ul>" +
                     "</div>" +
                     "</div></div>";
