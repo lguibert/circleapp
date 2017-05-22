@@ -3,13 +3,13 @@ from __future__ import unicode_literals
 from django.db import models
 
 DAY_CHOICES = (
-    ('MO', 'Monday'),
-    ('TU', 'Tuesday'),
-    ('WE', 'Wednesday'),
-    ('TH', 'Thursday'),
-    ('FR', 'Friday'),
-    ('SA', 'Saturday'),
-    ('SU', 'Sunday'),
+    ('LU', 'Lundi'),
+    ('MA', 'Mardi'),
+    ('ME', 'Mercredi'),
+    ('JE', 'Jeudi'),
+    ('VE', 'Vendredi'),
+    ('SA', 'Samedi'),
+    ('DI', 'Dimanche'),
 )
 
 
