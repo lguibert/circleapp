@@ -15,7 +15,7 @@
                                     <div class="row">
                                         <div class="form-group col-xs-6">
                                             <label for="daySelector">Jour</label>
-                                            <select id="daySelector" class="form-control">
+                                            <select id="daySelector" class="form-control selectpicker" multiple>
                                                 <option></option>
                                             </select>
                                         </div>
@@ -28,7 +28,7 @@
                                 <div class="col-xs-12 col-lg-3">
                                     <div class="form-group">
                                         <label for="types">Type de cours</label>
-                                        <select name="types" id="types" class="form-control">
+                                        <select name="types" id="types" class="form-control selectpicker" multiple>
                                             <option></option>
                                             {% for type in types %}
                                                 <option value="{{ type.id }}">{{ type.name }}</option>
@@ -39,7 +39,7 @@
                                 <div class="col-xs-12 col-lg-3">
                                     <div class="form-group">
                                         <label for="rooms">Salles</label>
-                                        <select name="rooms" id="rooms" class="form-control">
+                                        <select name="rooms" id="rooms" class="form-control selectpicker" multiple>
                                             <option></option>
                                             {% for room in rooms %}
                                                 <option value="{{ room.id }}">{{ room.name }}</option>
@@ -79,18 +79,23 @@
         $(document).ready(function () {
             var days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
             var $daySelector = $("#daySelector");
-            var FORMAT_DATE = "HH:mm";
+            var FORMAT_DATE_FULL = "HH:mm:ss";
+            var FORMAT_DATE_COMPACT = "HH:mm";
             var $target = $("#target");
 
             for (var i = 0; i < days.length; i++) {
                 $daySelector.append("<option id='" + i + "'>" + days[i] + "</option>");
+                if (i === days.length - 1) {
+                    $(".selectpicker").selectpicker("refresh");
+                }
             }
+
+            $(".selectpicker").selectpicker();
 
             $('#timeSelector').datetimepicker({
                 step: 15,
                 datepicker: false,
                 format: "H:i"
-
             });
 
             function createBlockCourse(course) {
@@ -99,8 +104,8 @@
                     "<div class='panel-heading'>" + course.name + "</div>" +
                     "<div class='panel-body'>" +
                     "<ul>" +
-                    "<li>Debut: " + moment(course.start_time, "HH:mm").format("HH:mm") +
-                    "<li>Fin: " + moment(course.end_time, "HH:mm").format("HH:mm") + "</li>" +
+                    "<li>Debut: " + moment(course.start_time, FORMAT_DATE_FULL).format(FORMAT_DATE_COMPACT) +
+                    "<li>Fin: " + moment(course.end_time, FORMAT_DATE_FULL).format(FORMAT_DATE_COMPACT) + "</li>" +
                     "</ul>" +
                     "</div>" +
                     "</div></div>";
@@ -132,13 +137,13 @@
                 }).done(function (data) {
                     console.log("SUCCESS");
                     console.log(data, data.length);
-                    if(data.courses && data.courses !== 0){
+                    if (data.courses && data.courses !== 0) {
                         generateCourse(data.courses);
-                    }else{
-                        toastr.error('Aucun cours pour les données sélectionnées.', 'Aie!')
+                    } else {
+                        toastr.error('Aucun cours pour les données sélectionnées.', 'Aie!');
                     }
                 }).fail(function (data) {
-                    console.log("ERROR");
+                    toastr.error('Problème côté serveur, faut taper Lucas.', 'Aie!');
                     console.log(data);
                 })
             })
