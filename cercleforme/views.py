@@ -42,7 +42,8 @@ def search_course(request):
                 "id": course.id,
                 "name": course.name,
                 "start_time": course.start_time,
-                "end_time": course.end_time
+                "end_time": course.end_time,
+                "room": course.room.name
             }
             for course in courses]
         }
