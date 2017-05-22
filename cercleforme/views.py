@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.decorators.http import require_POST
-from django.http.response import JsonResponse
+from django.http.response import JsonResponse, HttpResponse
 from django.core import serializers
 
 
@@ -25,5 +25,5 @@ def search_course(request):
 
     type = CourseType.objects.get(id=type_id)
     room = Room.objects.get(id=room_id)
-    courses = Course.objects.filter(start_time__gte=time, room=room, type=type).values()
-    return JsonResponse(serializers.serialize('json', courses), safe=False)
+    courses = [{"id": course.id, "name": course.name, "start_time": course.start_time, "end_time": course.end_time} for course in Course.objects.filter(start_time__gte=time, room=room, type=type)]
+    return JsonResponse({"courses":courses})
