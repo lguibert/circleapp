@@ -25,7 +25,10 @@ SECRET_KEY = 'h*zl)!hl1%6d*=b2%pl#-(^v_!v6!gfek4hw^bx^2apn6o9jje'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+	"localhost",
+	"circleapp.lucasguibert.com"
+]
 
 
 # Application definition
