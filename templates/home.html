@@ -115,10 +115,7 @@
             function generateCourse(data) {
                 $target.empty();
                 for (var i = 0; i < data.length; i++) {
-                    console.log(i)
-                    curData = data[i];
-                    console.log(curData);
-                    $target.append(createBlockCourse(curData));
+                    $target.append(createBlockCourse(data[i]));
                 }
             }
 
@@ -136,16 +133,13 @@
                         csrfmiddlewaretoken: "{{ csrf_token }}"
                     }
                 }).done(function (data) {
-                    console.log("SUCCESS");
-                    console.log(data, data.length);
-                    if (data.courses && data.courses !== 0) {
+                    if (data.courses && data.courses.length !== 0) {
                         generateCourse(data.courses);
                     } else {
                         toastr.error('Aucun cours pour les données sélectionnées.', 'Aie!');
                     }
                 }).fail(function (data) {
                     toastr.error('Problème côté serveur, faut taper Lucas.', 'Aie!');
-                    console.log(data);
                 })
             })
         });
