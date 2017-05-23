@@ -46,7 +46,8 @@ def search_course(request):
                 "name": course.name,
                 "start_time": course.start_time,
                 "end_time": course.end_time,
-                "room": course.room.name
+                "room": course.room.name,
+                "typeColor": course.type.color
             }
             for course in courses]
         }
