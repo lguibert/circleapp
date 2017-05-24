@@ -1,5 +1,5 @@
 #home {
-  @media (min-width: 1200px)  {
+  @media (min-width: 1200px) {
     #controllersWrapper {
       position: absolute;
       top: 0;
@@ -11,6 +11,9 @@
     }
     #controllersWrapper, #targetWrapper {
       height: 100vh;
+    }
+    .blockCourse {
+      height: 200px;
     }
   }
   #controllersWrapper {
