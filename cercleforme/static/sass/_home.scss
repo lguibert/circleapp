@@ -1,22 +1,26 @@
 #home {
-  @media (min-width: 1200px) {
+  @media (min-width: 1200px)  {
     #controllersWrapper {
-      background-color: #2f4b79;
-      color: white;
       position: absolute;
       top: 0;
       left: 0;
       border-right: 2px darkgray solid;
-      padding-top: 10px;
     }
     #targetWrapper {
-      background-color: #f0f0f0;
       padding-left: 30px;
-      padding-top: 20px;
     }
     #controllersWrapper, #targetWrapper {
       height: 100vh;
     }
+  }
+  #controllersWrapper {
+    background-color: #2f4b79;
+    color: white;
+    padding-top: 10px;
+  }
+  #targetWrapper {
+    background-color: #f0f0f0;
+    padding-top: 10px;
   }
   #target {
     .panel-body {
