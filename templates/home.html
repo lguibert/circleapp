@@ -80,9 +80,9 @@
                     "<div style='color: " + course.typeColor + "' class='panel-heading'>" + course.name + "</div>" +
                     "<div class='panel-body'>" +
                     "<ul>" +
-                    "<li>Debut: " + moment(course.start_time, FORMAT_DATE_FULL).format(FORMAT_DATE_COMPACT) +
-                    "<li>Fin: " + moment(course.end_time, FORMAT_DATE_FULL).format(FORMAT_DATE_COMPACT) + "</li>" +
-                    "<li>Salle: " + course.room + "</li>" +
+                    "<li>De " + moment(course.start_time, FORMAT_DATE_FULL).format(FORMAT_DATE_COMPACT) +
+                    " à " + moment(course.end_time, FORMAT_DATE_FULL).format(FORMAT_DATE_COMPACT) + "</li>" +
+                    "<li>" + course.room + "</li>" +
                     "</ul>" +
                     "</div>" +
                     "</div></div>";
