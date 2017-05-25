@@ -8,7 +8,7 @@
                     <form id="searchForm">
                         <div class="form-group">
                             <label for="daySelector">Jour</label>
-                            <select id="daySelector" class="form-control selectpicker" multiple>
+                            <select id="daySelector" class="form-control selectpicker" title="" multiple>
                                 <option></option>
                             </select>
                         </div>
@@ -18,7 +18,7 @@
                         </div>
                         <div class="form-group">
                             <label for="types">Type de cours</label>
-                            <select name="types" id="types" class="form-control selectpicker" multiple>
+                            <select name="types" id="types" class="form-control selectpicker" title="" multiple>
                                 <option></option>
                                 {% for type in types %}
                                     <option value="{{ type.id }}">{{ type.name }}</option>
@@ -27,7 +27,7 @@
                         </div>
                         <div class="form-group">
                             <label for="rooms">Salles</label>
-                            <select name="rooms" id="rooms" class="form-control selectpicker" multiple>
+                            <select name="rooms" id="rooms" class="form-control selectpicker" title="" multiple>
                                 <option></option>
                                 {% for room in rooms %}
                                     <option value="{{ room.id }}">{{ room.name }}</option>
