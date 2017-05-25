@@ -48,4 +48,4 @@ class Course(models.Model):
     end_time = models.TimeField()
 
     def __str__(self):
-        return self.name
+        return "%s %s %s" % (self.name, self.room.name, self.day)
