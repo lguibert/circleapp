@@ -14,7 +14,11 @@
                         </div>
                         <div class="form-group">
                             <label for="datetimeSelector">Heure</label>
-                            <input type='text' class="form-control" id='timeSelector'/>
+                            <input type='time' class="form-control" id='timeSelector'/>
+                        </div>
+                        <div class="form-group">
+                            <label for="durationSelector">Intervalle</label>
+                            <div id="slider-duration"></div>
                         </div>
                         <div class="form-group">
                             <label for="types">Type de cours</label>
@@ -119,5 +123,23 @@
                 })
             })
         });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("[data-toggle='tooltip']").tooltip({
+                "html": true
+            });
+            var slider = document.getElementById('slider-duration');
+
+            noUiSlider.create(slider, {
+                start: [20, 80],
+                connect: true,
+                range: {
+                    'min': 0,
+                    'max': 100
+                }
+            });
+        })(jQuery)
     </script>
 {% endblock %}
