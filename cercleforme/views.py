@@ -47,7 +47,12 @@ def search_course(request):
                 "start_time": course.start_time,
                 "end_time": course.end_time,
                 "room": course.room.name,
-                "typeColor": course.type.color
+                "typeColor": course.type.color,
+                "address": {
+                    "street": course.room.address.street,
+                    "zipcode": course.room.address.zipcode,
+                    "city": course.room.address.city
+                }
             }
             for course in courses]
         }
