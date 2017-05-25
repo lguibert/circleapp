@@ -11,6 +11,8 @@
     }
     #controllersWrapper, #targetWrapper {
       height: 100vh;
+      overflow: hidden;
+      overflow-y: scroll;
     }
   }
   #controllersWrapper {
@@ -19,7 +21,7 @@
     padding-top: 10px;
   }
   #targetWrapper {
-    background-color: #f0f0f0;
+    background-color: $background-body;
     padding-top: 10px;
   }
   #target {
