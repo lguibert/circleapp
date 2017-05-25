@@ -23,6 +23,9 @@
     padding-top: 10px;
   }
   #target {
+    .panel{
+      border-color: darken(#f0f0f0, 20%);
+    }
     .panel-body {
       ul {
         padding: 0;
