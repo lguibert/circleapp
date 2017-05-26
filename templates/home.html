@@ -69,12 +69,15 @@
 {% block extrajs %}
     <script>
         $(document).ready(function () {
+            var today = new Date();
             $(".daySelection").each(function () {
-               if($(this).val() == new Date().getDay() - 1){
+               if($(this).val() == today.getDay() - 1){
                    $(this).prop("checked", true);
                    return false;
                }
             });
+            $("#timeSelector").val(today.getHours() + ":" + today.getMinutes());
+
             var FORMAT_DATE_FULL = "HH:mm:ss";
             var FORMAT_DATE_COMPACT = "HH:mm";
             var $target = $("#target");
