@@ -32,13 +32,11 @@ def search_course(request):
 
     if day_id:
         courses = courses.filter(day__in=day_id)
-        pass
 
     if time:
         datetime_time = datetime.datetime.strptime(time, '%H:%M')
         new_time = (datetime_time + datetime.timedelta(hours=1, minutes=30)).strftime("%H:%M")
         courses = courses.filter(start_time__gte=time, start_time__lte=new_time)
-        pass
 
     return JsonResponse(
         {"courses": [
