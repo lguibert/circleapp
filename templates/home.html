@@ -118,9 +118,6 @@
                     roomsSelected.push($(this).val())
                 });
 
-                console.log(daysSelected, typesSelected, roomsSelected);
-
-
                 $.ajax({
                     url: "{% url 'searchCourses' %}",
                     method: "POST",
@@ -134,6 +131,7 @@
                 }).done(function (data) {
                     if (data.courses && data.courses.length !== 0) {
                         generateCourse(data.courses);
+                        $('html, body').animate( { scrollTop: $("#targetWrapper").offset().top }, 500);
                     } else {
                         toastr.error('Aucun cours pour les données sélectionnées.', 'Aie!');
                     }
