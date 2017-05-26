@@ -3,3 +3,4 @@ main.css
 *.pyc
 .idea
 .DS_STORE
+/static
