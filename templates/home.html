@@ -8,35 +8,47 @@
                     <form id="searchForm">
                         <div class="form-group">
                             <label for="daySelector">Jour</label>
-                            <select id="daySelector" class="form-control selectpicker" title="" multiple>
-                                <option></option>
-                            </select>
+                            <ul class="daysContainer">
+                                {% for day in days %}
+                                    <li>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" class="daySelection"
+                                                          value="{{ forloop.counter0 }}"/>{{ day }}
+                                            </label>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
                         </div>
+                        <hr>
                         <div class="form-group">
                             <label for="datetimeSelector">Heure</label>
                             <input type='time' class="form-control" id='timeSelector'/>
                         </div>
+                        <hr>
                         <div class="form-group">
                             <label for="durationSelector">Intervalle</label>
                             <div id="slider-duration"></div>
                         </div>
+                        <hr>
                         <div class="form-group">
                             <label for="types">Type de cours</label>
-                            <select name="types" id="types" class="form-control selectpicker" title="" multiple>
-                                <option></option>
-                                {% for type in types %}
-                                    <option value="{{ type.id }}">{{ type.name }}</option>
-                                {% endfor %}
-                            </select>
+                            {% for type in types %}
+                                <div class="checkbox">
+                                    <label><input type="checkbox" class="typeSelection"
+                                                  value="{{ type.id }}"/>{{ type.name }}</label>
+                                </div>
+                            {% endfor %}
                         </div>
+                        <hr>
                         <div class="form-group">
                             <label for="rooms">Salles</label>
-                            <select name="rooms" id="rooms" class="form-control selectpicker" title="" multiple>
-                                <option></option>
-                                {% for room in rooms %}
-                                    <option value="{{ room.id }}">{{ room.name }}</option>
-                                {% endfor %}
-                            </select>
+                            {% for room in rooms %}
+                                <div class="checkbox">
+                                    <label><input type="checkbox" class="toomSelection"
+                                                  value="{{ room.id }}"/>{{ room.name }}</label>
+                                </div>
+                            {% endfor %}
                         </div>
                         <div class="form-group">
                             <label style="visibility: hidden">Lancer recherche</label>
@@ -57,18 +69,9 @@
 {% block extrajs %}
     <script>
         $(document).ready(function () {
-            var days = {{ days|safe }};
-            var $daySelector = $("#daySelector");
             var FORMAT_DATE_FULL = "HH:mm:ss";
             var FORMAT_DATE_COMPACT = "HH:mm";
             var $target = $("#target");
-
-            for (var i = 0; i < days.length; i++) {
-                $daySelector.append("<option id='" + i + "'>" + days[i] + "</option>");
-                if (i === days.length - 1) {
-                    $(".selectpicker").selectpicker("refresh");
-                }
-            }
 
             $(".selectpicker").selectpicker();
 
@@ -102,14 +105,26 @@
             $("#searchForm").on("submit", function (e) {
                 e.preventDefault();
 
+                daysSelected = [];
+                typesSelected = [];
+                roomsSelected = [];
+                $(".daySelection:checked").each(function () {
+                    daysSelected.push($(this).val())
+                });
+                $(".typeSelection:checked").each(function () {
+                    typesSelected.push($(this).val())
+                });
+
+                console.log(daysSelected);
+
                 $.ajax({
                     url: "{% url 'searchCourses' %}",
                     method: "POST",
                     data: {
-                        day: $("#daySelector").val(),
+                        day: daysSelected,
                         time: $("#timeSelector").val(),
-                        type: $("#types").val(),
-                        room: $("#rooms").val(),
+                        type: typesSelected,
+                        room: roomsSelected,
                         csrfmiddlewaretoken: "{{ csrf_token }}"
                     }
                 }).done(function (data) {

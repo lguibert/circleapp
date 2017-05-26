@@ -1,4 +1,3 @@
-import json
 import datetime
 
 from django.shortcuts import render
@@ -12,7 +11,7 @@ def home(request):
     return render(request, "home.html", {
         "types": CourseType.objects.all(),
         "rooms": Room.objects.all(),
-        "days": json.dumps([day[1] for day in DAY_CHOICES])
+        "days": list([day[1] for day in DAY_CHOICES])
     })
 
 
