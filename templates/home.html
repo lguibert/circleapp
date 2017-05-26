@@ -69,6 +69,12 @@
 {% block extrajs %}
     <script>
         $(document).ready(function () {
+            $(".daySelection").each(function () {
+               if($(this).val() == new Date().getDay() - 1){
+                   $(this).prop("checked", true);
+                   return false;
+               }
+            });
             var FORMAT_DATE_FULL = "HH:mm:ss";
             var FORMAT_DATE_COMPACT = "HH:mm";
             var $target = $("#target");
@@ -131,7 +137,7 @@
                 }).done(function (data) {
                     if (data.courses && data.courses.length !== 0) {
                         generateCourse(data.courses);
-                        $('html, body').animate( { scrollTop: $("#targetWrapper").offset().top }, 500);
+                        $('html, body').animate({scrollTop: $("#targetWrapper").offset().top}, 500);
                     } else {
                         toastr.error('Aucun cours pour les données sélectionnées.', 'Aie!');
                     }
