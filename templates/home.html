@@ -86,7 +86,7 @@
                 return "<div class='col-lg-2 col-xs-6 blockCourse'><div class='panel panel-default coursePanel'>" +
                     "<div style='color: " + course.typeColor + "' class='panel-heading'>" + course.name + "</div>" +
                     "<div class='panel-body'>" +
-                    "<ul>" +
+                    "<ul><li>" + course.day + "</li>" +
                     "<li>De " + moment(course.start_time, FORMAT_DATE_FULL).format(FORMAT_DATE_COMPACT) +
                     " à " + moment(course.end_time, FORMAT_DATE_FULL).format(FORMAT_DATE_COMPACT) + "</li>" +
                     "<li><a href='https://maps.google.com/?q=" + q + "' target='_blank'>" + course.room + "</a></li>" +

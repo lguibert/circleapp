@@ -43,6 +43,7 @@ def search_course(request):
             {
                 "id": course.id,
                 "name": course.name,
+                "day": course.day,
                 "start_time": course.start_time,
                 "end_time": course.end_time,
                 "room": course.room.name,
