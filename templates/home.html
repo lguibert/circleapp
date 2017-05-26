@@ -45,7 +45,7 @@
                             <label for="rooms">Salles</label>
                             {% for room in rooms %}
                                 <div class="checkbox">
-                                    <label><input type="checkbox" class="toomSelection"
+                                    <label><input type="checkbox" class="roomSelection"
                                                   value="{{ room.id }}"/>{{ room.name }}</label>
                                 </div>
                             {% endfor %}
@@ -114,8 +114,12 @@
                 $(".typeSelection:checked").each(function () {
                     typesSelected.push($(this).val())
                 });
+                $(".roomSelection:checked").each(function () {
+                    roomsSelected.push($(this).val())
+                });
 
-                console.log(daysSelected);
+                console.log(daysSelected, typesSelected, roomsSelected);
+
 
                 $.ajax({
                     url: "{% url 'searchCourses' %}",
