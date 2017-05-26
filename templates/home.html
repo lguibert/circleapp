@@ -57,7 +57,7 @@
 {% block extrajs %}
     <script>
         $(document).ready(function () {
-            var days = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+            var days = {{ days|safe }};
             var $daySelector = $("#daySelector");
             var FORMAT_DATE_FULL = "HH:mm:ss";
             var FORMAT_DATE_COMPACT = "HH:mm";

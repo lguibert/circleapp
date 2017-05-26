@@ -1,16 +1,18 @@
+import json
+import datetime
+
 from django.shortcuts import render
 from django.views.decorators.http import require_POST
-from django.http.response import JsonResponse, HttpResponse
-from django.core import serializers
+from django.http.response import JsonResponse
 
-from cercleforme.models import CourseType, Room, Course
+from cercleforme.models import CourseType, Room, Course, DAY_CHOICES
 
-import datetime
 
 def home(request):
     return render(request, "home.html", {
         "types": CourseType.objects.all(),
-        "rooms": Room.objects.all()
+        "rooms": Room.objects.all(),
+        "days": json.dumps([day[1] for day in DAY_CHOICES])
     })
 
 
