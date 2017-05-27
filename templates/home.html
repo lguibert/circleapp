@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container-fluid" id="home" style="position: relative">
         <div class="row">
-            <div class="col-xs-12 col-lg-2" id="controllersWrapper">
+            <div class="col-xs-12 col-lg-3" id="controllersWrapper">
                 <div class="controllersContainer">
                     <form id="searchForm">
                         <div class="form-group">
@@ -43,12 +43,16 @@
                         <hr>
                         <div class="form-group">
                             <label for="rooms">Salles</label>
-                            {% for room in rooms %}
-                                <div class="checkbox">
-                                    <label><input type="checkbox" class="roomSelection"
-                                                  value="{{ room.id }}"/>{{ room.name }}</label>
-                                </div>
-                            {% endfor %}
+                            <ul class="roomsContainer">
+                                {% for room in rooms %}
+                                    <li>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox" class="roomSelection"
+                                                          value="{{ room.id }}"/>{{ room.name }}</label>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
                         </div>
                         <div class="form-group">
                             <label style="visibility: hidden">Lancer recherche</label>
@@ -58,7 +62,7 @@
                     </form>
                 </div>
             </div>
-            <div class="col-xs-12 col-lg-10 col-lg-offset-2" id="targetWrapper">
+            <div class="col-xs-12 col-lg-9 col-lg-offset-3" id="targetWrapper">
                 <div class="row" id="target">
                 </div>
             </div>
@@ -71,10 +75,10 @@
         $(document).ready(function () {
             var today = new Date();
             $(".daySelection").each(function () {
-               if($(this).val() == today.getDay() - 1){
-                   $(this).prop("checked", true);
-                   return false;
-               }
+                if ($(this).val() == today.getDay() - 1) {
+                    $(this).prop("checked", true);
+                    return false;
+                }
             });
             $("#timeSelector").val(today.getHours() + ":" + today.getMinutes());
 
