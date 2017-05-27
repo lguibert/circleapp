@@ -118,18 +118,9 @@
             $("#searchForm").on("submit", function (e) {
                 e.preventDefault();
 
-                daysSelected = [];
-                typesSelected = [];
-                roomsSelected = [];
-                $(".daySelection:checked").each(function () {
-                    daysSelected.push($(this).val())
-                });
-                $(".typeSelection:checked").each(function () {
-                    typesSelected.push($(this).val())
-                });
-                $(".roomSelection:checked").each(function () {
-                    roomsSelected.push($(this).val())
-                });
+                daysSelected = $.map($(".daySelection:checked"), function (day) { return day.value});
+                typesSelected = $.map($(".typeSelection:checked"), function (day) { return day.value});
+                roomsSelected = $.map($(".roomSelection:checked"), function (day) { return day.value});
 
                 $.ajax({
                     url: "{% url 'searchCourses' %}",
