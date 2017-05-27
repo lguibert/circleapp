@@ -22,7 +22,7 @@ def search_course(request):
     room_id = request.POST.getlist("room[]", request.POST.get("room", None))
     time = request.POST.getlist("time[]", request.POST.get("time", None))
 
-    courses = Course.objects.all().order_by("start_time")
+    courses = Course.objects.all().order_by("day", "start_time")
 
     if type_id:
         courses = courses.filter(type_id__in=CourseType.objects.filter(id__in=type_id).values_list("id", flat=True))
