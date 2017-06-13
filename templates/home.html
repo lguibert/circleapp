@@ -13,7 +13,7 @@
                                     <li>
                                         <div class="checkbox">
                                             <label><input type="checkbox" class="daySelection"
-                                                          value="{{ day }}"/>{{ day }}
+                                                          value="{{ day }}" data-value="{{ forloop.counter0 }}"/>{{ day }}
                                             </label>
                                         </div>
                                     </li>
@@ -74,13 +74,16 @@
     <script>
         $(document).ready(function () {
             var today = new Date();
+            var $timeselector = $("#timeSelector");
+
             $(".daySelection").each(function () {
-                if ($(this).val() == today.getDay() - 1) {
+                if ($(this).data("value") === today.getDay() - 1) {
                     $(this).prop("checked", true);
                     return false;
                 }
             });
-            $("#timeSelector").val(today.getHours() + ":" + today.getMinutes());
+
+            $timeselector.val(today.getHours() + ":" + today.getMinutes());
 
             var FORMAT_DATE_FULL = "HH:mm:ss";
             var FORMAT_DATE_COMPACT = "HH:mm";
@@ -88,7 +91,7 @@
 
             $(".selectpicker").selectpicker();
 
-            $('#timeSelector').datetimepicker({
+            $timeselector.datetimepicker({
                 step: 15,
                 datepicker: false,
                 format: "H:i"
