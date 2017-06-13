@@ -31,7 +31,7 @@ def search_course(request):
         courses = courses.filter(room_id__in=Room.objects.filter(id__in=room_id).values_list("id", flat=True))
 
     if day_id:
-        courses = courses.filter(day__in=list(DAY_CHOICES[int(i)][1] for i in day_id))
+        courses = courses.filter(day__in= day_id)
 
     if time:
         datetime_time = datetime.datetime.strptime(time, '%H:%M')
